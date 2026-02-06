@@ -1,0 +1,32 @@
+** sch_path: /home/user/pscan2_xschem/examples/jt2tb/jt2tb.sch
+**.subckt jt2tb
+Xm1 net1 net2 jt2
+P1 net1 0 P1
+Xm2 net2 net3 jt2
+Xm3 net3 net4 jt2
+Xm4 net4 stdload
+**.ends
+* expanding   symbol:  jt2.sym # of pins=2
+** sym_path: /home/user/pscan2_xschem/cells/jt2.sym
+** sch_path: /home/user/pscan2_xschem/cells/jt2.sch
+.subckt jt2 IN OUT
+*.iopin OUT
+*.iopin IN
+L1 net3 net2 L?
+L2 net2 net1 L?
+I0 0 net2 I?
+L5 net1 IN L?
+L6 OUT net3 L?
+J1 net1 0 J
+J2 net3 0 J
+.ends
+* expanding   symbol:  stdload.sym # of pins=1
+** sym_path: /home/user/pscan2_xschem/cells/stdload.sym
+** sch_path: /home/user/pscan2_xschem/cells/stdload.sch
+.subckt stdload IN
+*.iopin IN
+Xm1 IN net1 jt2
+R1 net2 0 R?
+Xm2 net1 net2 jt2
+.ends
+.end

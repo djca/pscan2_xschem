@@ -1,0 +1,27 @@
+circuit jt2()
+{
+
+PARAMETER
+	L1=0.75,
+	L2=0.75,
+	I0=2.8,
+	L5=0.75,
+	L6=0.75,
+	J1=2,
+	J2=2;
+
+EXTERNAL
+	XL1=1,
+	XL2=1,
+	XI0=1,
+	XL5=1,
+	XL6=1,
+	XJ1=1,
+	XJ2=1;
+
+	RULE GO(GET(IN))
+    INC(J1),
+    SET(OUT),
+    INC(J2);
+
+}

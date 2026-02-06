@@ -1,0 +1,35 @@
+# Get this directory (portable, no hardcoding)
+set PSCAN2_XSCHEM_DIR [file dirname [info script]]
+
+# ------------------------------------------------
+# Prepend PSCAN2_XSCHEM_DIR to XSCHEM_LIBRARY_PATH
+# PSCAN2_XSCHEM devices like res and ind will take 
+# priority over builtin xschem symbols
+# ------------------------------------------------
+if {![string match "*$PSCAN2_XSCHEM_DIR/devices*" $XSCHEM_LIBRARY_PATH]} {
+    set XSCHEM_LIBRARY_PATH "$PSCAN2_XSCHEM_DIR/devices:$XSCHEM_LIBRARY_PATH"
+}
+if {![string match "*$PSCAN2_XSCHEM_DIR/cells*" $XSCHEM_LIBRARY_PATH]} {
+    set XSCHEM_LIBRARY_PATH "$PSCAN2_XSCHEM_DIR/cells:$XSCHEM_LIBRARY_PATH"
+}
+
+# Export the modified library path to the environment so that subprocesses can see it
+set ::env(XSCHEM_LIBRARY_PATH) $XSCHEM_LIBRARY_PATH
+
+# ------------------------------------------------
+# Create a simulation directory in the current working directory
+# ------------------------------------------------ 
+global pscan2_sim_dir
+set pscan2_sim_dir [file join [pwd] simulation]
+file mkdir $pscan2_sim_dir
+
+# ------------------------------------------------
+# Load Tcl modules
+# ------------------------------------------------
+source $PSCAN2_XSCHEM_DIR/tcl/helpers.tcl
+source $PSCAN2_XSCHEM_DIR/tcl/netlist.tcl
+source $PSCAN2_XSCHEM_DIR/tcl/hdl.tcl
+source $PSCAN2_XSCHEM_DIR/tcl/menu.tcl
+
+puts "pscan2_xschema loaded from $PSCAN2_XSCHEM_DIR"
+

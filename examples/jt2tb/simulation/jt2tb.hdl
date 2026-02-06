@@ -1,0 +1,13 @@
+PARAMETER
+	XI=1, XJ=1, XL=1, XR=1,TSEQ=400.0, TP=100.0;
+
+circuit jt2tb()
+{
+
+INTERNAL
+	p1=0.85+tvec("d1");
+
+	rule m1go(inc(p1))
+        set(m1.in);
+
+}

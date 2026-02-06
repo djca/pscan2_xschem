@@ -1,0 +1,10 @@
+circuit stdload()
+{
+
+PARAMETER
+	R1=0.5;
+
+EXTERNAL
+	XR1=1;
+
+}
