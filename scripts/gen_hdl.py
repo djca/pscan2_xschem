@@ -95,7 +95,7 @@ def generate_hdl(target_name, output_dir, search_paths, all_models, visited=None
         # --- GLOBAL PARAMETERS (ROOT LOGIC) ---
         if data["is_root"]:
             f.write("PARAMETER\n")
-            f.write(f"\tXI=1, XJ=1, XL=1, XR=1,")
+            f.write(f"\tXI=1, XJ=1, XL=1, XR=1")
             if data["global_p"]:
                 f.write(f"{data['global_p']}")
             if any(value in all_models for value in {'JN','JJN'}):
